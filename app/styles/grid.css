@@ -1,0 +1,26 @@
+/* Using tailwind css for grids */
+
+/* .guessGrid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: solid 1px black;
+}
+
+.guessGrid * {
+    padding: 5px;
+    font-size: 30px;
+    color: white;
+} */
+
+.correctGuess {
+    border: solid 1px black;
+    background-color: green;
+    font-size: 30px;
+}
+
+.wrongGuess {
+    border: solid 1px black;
+    background-color: red;
+    font-size: 30px;
+}
