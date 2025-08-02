@@ -1,5 +1,6 @@
 import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
 import { periodicTable } from '../global_variables/elements';
+import '../styles/search.css'
 
 type Element = {
 	name: string

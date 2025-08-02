@@ -4,7 +4,7 @@ import Search from './components/Search';
 import { periodicTable } from './global_variables/elements';
 import { PeriodElement } from './types/periodElement';
 import { useEffect, useState } from "react";
-
+import EndingScreenOverlay from './components/EndingScreenOverlay';
 
 export default function Home() {
 
@@ -15,6 +15,9 @@ export default function Home() {
   const [guessNumber, setGuessNumber] = useState<number>(0);
   const [win, setWin] = useState<Boolean>(false);
   const [guessList, setGuessList] = useState<PeriodElement[]>([]);
+
+  // UseState for the overlay menu
+  const [isOverlayOpen, setIsOverlayOpen] = useState<boolean>(false);
 
   const fetchElementData = async (name: string) => {
     const res = await fetch(`/api/?name=${name}`);
@@ -44,32 +47,46 @@ export default function Home() {
     if (guessedElement === correctElement?.name) {
       setWin(true)
     }
-    console.log("test")
+
     setGuessList(prev => [...prev, periodicTable.find(element => element.name === guessedElement)])
     setGuessNumber(guessNumber + 1)
   }, [guessedElement])
 
   // Local data fetcher
   useEffect(() => {
-    const randomElementIndex = Math.floor(Math.random() * periodicTable.length)
-
-    setCorrectElement(periodicTable[randomElementIndex])
+    getElementData()
   }, [])
 
-
-  if (guessNumber == maxGuesses && !win) {
-    return (
-      <div>Game over</div>
-    )
+  const getElementData = () => {
+    const randomElementIndex = Math.floor(Math.random() * periodicTable.length)
+    setCorrectElement(periodicTable[randomElementIndex])
   }
 
+  useEffect(() => {
+    if ((guessNumber === maxGuesses && !win) || win) {
+      setIsOverlayOpen(true);
+    }
+  }, [guessNumber, win]);
+
+  const tryAgain = () => {
+    getElementData()
+    setGuessList([])
+    setGuessNumber(0)
+    setWin(false)
+    setIsOverlayOpen(false)
+  }
 
   return (
     <div>
       <Search setGuessedElement={setGuessedElement} />
       {correctElement?.name}
       <Grid guessList={guessList} correctElement={correctElement} />
-      {win ? <p>Yippie!</p> : null}
+
+      <EndingScreenOverlay win={win} isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)}>
+        <button type='button' onClick={() => tryAgain()}>Try Again?</button>
+      </EndingScreenOverlay>
+
+
     </div>
   );
 }

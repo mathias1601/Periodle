@@ -60,6 +60,20 @@ const Grid = ({ guessList, correctElement }: Props) => {
 
 	return (
 		<div>
+			<div className='grid grid-cols-4'>
+				<div className='column'>
+					Element Name
+				</div>
+				<div className='column'>
+					Atomic Number
+				</div>
+				<div className='column'>
+					Group
+				</div>
+				<div className='column'>
+					Period
+				</div>
+			</div>
 			{displayGuesses}
 		</div>
 	)
