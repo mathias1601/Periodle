@@ -23,104 +23,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-}
-
-body {
   background-color: blanchedalmond;
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-}
-
-.App {
-  font-family: sans-serif;
   text-align: center;
 }
 
-a {
-  text-decoration: none;
-  color: rebeccapurple;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-a:visited {
-  color: blueviolet;
-}
-
-a:active {
-  color: red;
-}
-
-.search-container {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin-top: 100px;
-}
-
-.search-container input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin: auto 0;
-}
-
-.search-container ul {
-  list-style-type: none;
-  padding: 0 0 0 0;
-  margin: 0;
-  text-align: left;
-}
-
-.search-container li {
-  padding: 10px;
-  margin-left: 0;
-  cursor: pointer;
-}
-
-.search-container .active {
-  font-weight: bold;
-  background-color: yellow;
-  color: black;
-}
-
-.search-container .active:hover {
-  background-color: gray;
-}
-
-.search-container li:hover {
-  background-color: gray;
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.user-card {
-  border: 1px solid gray;
-  padding: 10px;
-  margin: 10px;
-  width: 300px;
-  border-radius: 16px;
-  box-shadow:
-    0 4px 8px 0 rgba(0, 0, 0, 0.2),
-    0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.card-title {
-  font-weight: bold;
-}
-
-.card-text {
-  font-style: italic;
+h1 {
+  font-size: 50px;
 }

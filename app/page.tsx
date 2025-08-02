@@ -10,6 +10,9 @@ export default function Home() {
 
   const maxGuesses = 5
 
+  const [score, setScore] = useState<number>(0)
+  const [highscore, setHighscore] = useState<number>(0)
+
   const [correctElement, setCorrectElement] = useState<PeriodElement>();
   const [guessedElement, setGuessedElement] = useState<string>("");
   const [guessNumber, setGuessNumber] = useState<number>(0);
@@ -18,6 +21,19 @@ export default function Home() {
 
   // UseState for the overlay menu
   const [isOverlayOpen, setIsOverlayOpen] = useState<boolean>(false);
+
+  //Loads the local storage to get pre-existing highcsore
+  useEffect(() => {
+    const saved = localStorage.getItem('highscore');
+    if (saved) {
+      setHighscore(JSON.parse(saved));
+    }
+  }, []);
+
+  //Saves the highscore to local storage on the browser
+  useEffect(() => {
+    localStorage.setItem('highscore', JSON.stringify(highscore));
+  }, [highscore]);
 
   const fetchElementData = async (name: string) => {
     const res = await fetch(`/api/?name=${name}`);
@@ -66,6 +82,18 @@ export default function Home() {
     if ((guessNumber === maxGuesses && !win) || win) {
       setIsOverlayOpen(true);
     }
+    if (win) {
+      setScore(prevScore => {
+        const newScore = prevScore + 1;
+        if (newScore > highscore) {
+          setHighscore(newScore);
+        }
+        return newScore;
+      });
+    }
+    if (guessNumber === maxGuesses && !win) {
+      setScore(0)
+    }
   }, [guessNumber, win]);
 
   const tryAgain = () => {
@@ -78,6 +106,9 @@ export default function Home() {
 
   return (
     <div>
+      <h1>Periodle</h1>
+      <p>Current Score: {score}</p>
+      <p>Highscore: {highscore}</p>
       <Search setGuessedElement={setGuessedElement} />
       {correctElement?.name}
       <Grid guessList={guessList} correctElement={correctElement} />
@@ -85,8 +116,6 @@ export default function Home() {
       <EndingScreenOverlay win={win} isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)}>
         <button type='button' onClick={() => tryAgain()}>Try Again?</button>
       </EndingScreenOverlay>
-
-
     </div>
   );
 }
