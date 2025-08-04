@@ -1,6 +1,7 @@
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react"
+import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react"
 import { periodicTable } from '../global_variables/elements';
 import '../styles/search.css'
+import { PeriodElement } from "../types/periodElement";
 
 type Element = {
 	name: string
@@ -9,11 +10,13 @@ type Element = {
 
 interface Props {
 	setGuessedElement: Dispatch<SetStateAction<string>>
+	search: string
+	setSearch: Dispatch<SetStateAction<string>>
+	firstSixMatching: Element[]
+	setFirstSixMatching: Dispatch<SetStateAction<Element[]>>
 }
 
-const Search = ({ setGuessedElement }: Props) => {
-	const [search, setSearch] = useState<string>("")
-	const [firstSixMatching, setFirstSixMatching] = useState<Element[]>([]);
+const Search = ({ setGuessedElement, search, setSearch, firstSixMatching, setFirstSixMatching }: Props) => {
 
 	//Handle changes in search
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

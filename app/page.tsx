@@ -19,6 +19,10 @@ export default function Home() {
   const [win, setWin] = useState<Boolean>(false);
   const [guessList, setGuessList] = useState<PeriodElement[]>([]);
 
+  // UseState for the search bar
+  const [search, setSearch] = useState<string>("")
+  const [firstSixMatching, setFirstSixMatching] = useState<PeriodElement[]>([]);
+
   // UseState for the overlay menu
   const [isOverlayOpen, setIsOverlayOpen] = useState<boolean>(false);
 
@@ -102,19 +106,22 @@ export default function Home() {
     setGuessNumber(0)
     setWin(false)
     setIsOverlayOpen(false)
+    setSearch("")
+    setFirstSixMatching([])
   }
+
 
   return (
     <div>
       <h1>Periodle</h1>
       <p>Current Score: {score}</p>
       <p>Highscore: {highscore}</p>
-      <Search setGuessedElement={setGuessedElement} />
+      <Search setGuessedElement={setGuessedElement} search={search} setSearch={setSearch} firstSixMatching={firstSixMatching} setFirstSixMatching={setFirstSixMatching} />
       {correctElement?.name}
       <Grid guessList={guessList} correctElement={correctElement} />
 
       <EndingScreenOverlay win={win} isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)}>
-        <button type='button' onClick={() => tryAgain()}>Try Again?</button>
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => tryAgain()}>Continue</button>
       </EndingScreenOverlay>
     </div>
   );

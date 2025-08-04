@@ -20,9 +20,13 @@ const EndingScreenOverlay = ({ win, isOpen, onClose, children }: Props) => {
 							<button className='overlay_close' type='button' onClick={onClose} />
 						</div>
 						{win ?
-							<div>Yippie!</div>
+							<div>
+								<h1>Yippie!</h1>
+							</div>
 							:
-							<div>WOOOMPP WOOOOMPP</div>
+							<div>
+								<h1>WOOOMPP WOOOOMPP</h1>
+							</div>
 						}
 						{children}
 					</div>
