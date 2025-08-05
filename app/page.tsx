@@ -5,6 +5,7 @@ import { periodicTable } from './global_variables/elements';
 import { PeriodElement } from './types/periodElement';
 import { useEffect, useState } from "react";
 import EndingScreenOverlay from './components/EndingScreenOverlay';
+import NumGuessContainer from './components/NumGuessContainer';
 
 export default function Home() {
 
@@ -28,15 +29,20 @@ export default function Home() {
 
   //Loads the local storage to get pre-existing highcsore
   useEffect(() => {
-    const saved = localStorage.getItem('highscore');
-    if (saved) {
-      setHighscore(JSON.parse(saved));
+    const savedHighScore = localStorage.getItem('highscore');
+    const savedCurrentScore = localStorage.getItem('currentscore');
+    if (savedHighScore) {
+      setHighscore(JSON.parse(savedHighScore));
+    }
+    if (savedCurrentScore) {
+      setHighscore(JSON.parse(savedCurrentScore));
     }
   }, []);
 
-  //Saves the highscore to local storage on the browser
+  //Saves the highscore and current score to local storage on the browser
   useEffect(() => {
     localStorage.setItem('highscore', JSON.stringify(highscore));
+    localStorage.setItem('currentscore', JSON.stringify(score));
   }, [highscore]);
 
   const fetchElementData = async (name: string) => {
@@ -67,9 +73,11 @@ export default function Home() {
     if (guessedElement === correctElement?.name) {
       setWin(true)
     }
+    else {
+      setGuessNumber(guessNumber + 1)
+    }
 
     setGuessList(prev => [...prev, periodicTable.find(element => element.name === guessedElement)])
-    setGuessNumber(guessNumber + 1)
   }, [guessedElement])
 
   // Local data fetcher
@@ -112,10 +120,11 @@ export default function Home() {
 
 
   return (
-    <div>
+    <div className='mainHome'>
       <h1>Periodle</h1>
       <p>Current Score: {score}</p>
       <p>Highscore: {highscore}</p>
+      <NumGuessContainer maxGuesses={maxGuesses} numberOfGuesses={maxGuesses - guessNumber} />
       <Search setGuessedElement={setGuessedElement} search={search} setSearch={setSearch} firstSixMatching={firstSixMatching} setFirstSixMatching={setFirstSixMatching} />
       {correctElement?.name}
       <Grid guessList={guessList} correctElement={correctElement} />
