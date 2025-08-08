@@ -2,12 +2,14 @@
     border: solid 1px black;
     background-color: lightgreen;
     font-size: 30px;
+    display: flex;
 }
 
 .wrongGuess {
     border: solid 1px black;
     background-color: lightcoral;
     font-size: 30px;
+    display: flex;
 }
 
 .column {

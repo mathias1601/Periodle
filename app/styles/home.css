@@ -1,0 +1,12 @@
+.titleSection {
+    display: flex;
+    justify-content: center;
+}
+
+.hardModeButtonActive {
+    color: green;
+}
+
+.hardModeButtonInactive {
+    color: gray;
+}

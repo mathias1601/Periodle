@@ -3,44 +3,57 @@ import '../styles/grid.css';
 import { PeriodElement } from '../types/periodElement';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import useHardModeStore from '../store/useHardModeStore';
 
 interface Props {
 	guessList: PeriodElement[]
 	correctElement: PeriodElement
 }
 
+const keys: (keyof PeriodElement)[] = [
+	"name",
+	"period",
+	"group",
+	"atomicNumber",
+	"stateAtRoomTemp",
+	"category",
+	"meltingPoint",
+	"yearDiscovered"
+];
+
 const Grid = ({ guessList, correctElement }: Props) => {
 
+	// useStore zustand
+	const hardmode = useHardModeStore((state) => state.hardmode)
+
 	const displayGuesses = guessList.map((guess, index) => (
-		<div key={index} className='grid grid-cols-4'>
+		<div key={index} className='grid grid-cols-8'>
+			{keys.map((key) => {
+				const guessValue = guess[key]
+				const correctValue = correctElement[key]
 
-			<div className={(correctElement.name === guess.name) ? 'correctGuess' : 'wrongGuess'}>
-				{guess.name}
-			</div>
+				const isCorrect = guessValue === correctValue
+				const showArrow = !hardmode && typeof guessValue === "number" && typeof correctValue === "number"
 
-			<div className={(correctElement.atomicNumber === guess.atomicNumber) ? 'correctGuess' : 'wrongGuess'}>
-				{guess.atomicNumber}
-				{correctElement.atomicNumber > guess.atomicNumber ? <FontAwesomeIcon icon={faArrowUp} /> : null}
-				{correctElement.atomicNumber < guess.atomicNumber ? <FontAwesomeIcon icon={faArrowDown} /> : null}
-			</div>
+				return (
+					<div key={key} className={isCorrect ? "correctGuess" : "wrongGuess"}>
+						{guessValue}
+						{showArrow && (
+							<div>
+								{correctValue > guessValue && <FontAwesomeIcon icon={faArrowUp} />}
+								{correctValue < guessValue && <FontAwesomeIcon icon={faArrowDown} />}
+							</div>
+						)}
+					</div>
+				)
+			})}
 
-			<div className={(correctElement.group === guess.group) ? 'correctGuess' : 'wrongGuess'}>
-				{guess.group}
-				{correctElement.group > guess.group ? <FontAwesomeIcon icon={faArrowUp} /> : null}
-				{correctElement.group < guess.group ? <FontAwesomeIcon icon={faArrowDown} /> : null}
-			</div>
-
-			<div className={(correctElement.period === guess.period) ? 'correctGuess' : 'wrongGuess'}>
-				{guess.period}
-				{correctElement.period > guess.period ? <FontAwesomeIcon icon={faArrowUp} /> : null}
-				{correctElement.period < guess.period ? <FontAwesomeIcon icon={faArrowDown} /> : null}
-			</div>
 		</div>
 	))
 
 	return (
 		<div>
-			<div className='grid grid-cols-4'>
+			<div className='grid grid-cols-8'>
 				<div className='column'>
 					Element Name
 				</div>
@@ -48,10 +61,22 @@ const Grid = ({ guessList, correctElement }: Props) => {
 					Atomic Number
 				</div>
 				<div className='column'>
+					Period
+				</div>
+				<div className='column'>
 					Group
 				</div>
 				<div className='column'>
-					Period
+					State at room temp
+				</div>
+				<div className='column'>
+					Category
+				</div>
+				<div className='column'>
+					Melting point
+				</div>
+				<div className='column'>
+					Year discovered
 				</div>
 			</div>
 			{displayGuesses}

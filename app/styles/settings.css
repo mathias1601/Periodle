@@ -1,0 +1,17 @@
+.backButton {
+    border: solid 3px black;
+    border-radius: 30px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.backButton::before {
+    content: "←";
+    margin-right: 8px;
+}
+
+.backButton:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}

@@ -6,13 +6,22 @@ import { PeriodElement } from './types/periodElement';
 import { useEffect, useState } from "react";
 import EndingScreenOverlay from './components/EndingScreenOverlay';
 import NumGuessContainer from './components/NumGuessContainer';
+import './styles/infoButton.css'
+import Link from 'next/link';
+import './styles/home.css'
+import useScoreStore from './store/useScoreStore';
+import useHighScoreStore from './store/useHighScoreStore';
 
 export default function Home() {
 
   const maxGuesses = 5
 
-  const [score, setScore] = useState<number>(0)
-  const [highscore, setHighscore] = useState<number>(0)
+  // useStore zustand
+  const score = useScoreStore((state) => state.score)
+  const highscore = useHighScoreStore((state) => state.highscore)
+
+  const setScore = useScoreStore((state) => state.setScore)
+  const setHighscore = useHighScoreStore((state) => state.setHighscore)
 
   const [correctElement, setCorrectElement] = useState<PeriodElement>();
   const [guessedElement, setGuessedElement] = useState<string>("");
@@ -35,7 +44,7 @@ export default function Home() {
       setHighscore(JSON.parse(savedHighScore));
     }
     if (savedCurrentScore) {
-      setHighscore(JSON.parse(savedCurrentScore));
+      setScore(JSON.parse(savedCurrentScore));
     }
   }, []);
 
@@ -43,7 +52,7 @@ export default function Home() {
   useEffect(() => {
     localStorage.setItem('highscore', JSON.stringify(highscore));
     localStorage.setItem('currentscore', JSON.stringify(score));
-  }, [highscore]);
+  }, [highscore, score]);
 
   const fetchElementData = async (name: string) => {
     const res = await fetch(`/api/?name=${name}`);
@@ -95,13 +104,11 @@ export default function Home() {
       setIsOverlayOpen(true);
     }
     if (win) {
-      setScore(prevScore => {
-        const newScore = prevScore + 1;
-        if (newScore > highscore) {
-          setHighscore(newScore);
-        }
-        return newScore;
-      });
+      const newScore = score + 1;
+      setScore(newScore);
+      if (newScore > highscore) {
+        setHighscore(newScore);
+      }
     }
     if (guessNumber === maxGuesses && !win) {
       setScore(0)
@@ -121,7 +128,15 @@ export default function Home() {
 
   return (
     <div className='mainHome'>
-      <h1>Periodle</h1>
+      <div className='titleSection'>
+        <h1>Periodle</h1>
+        <Link href='/howToPlay'>
+          <button className='infoButton'></button>
+        </Link>
+      </div>
+      <Link href='/settings'>
+        <button>Settings</button>
+      </Link>
       <p>Current Score: {score}</p>
       <p>Highscore: {highscore}</p>
       <NumGuessContainer maxGuesses={maxGuesses} numberOfGuesses={maxGuesses - guessNumber} />
