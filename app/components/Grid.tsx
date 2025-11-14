@@ -12,9 +12,9 @@ interface Props {
 
 const keys: (keyof PeriodElement)[] = [
 	"name",
+	"atomicNumber",
 	"period",
 	"group",
-	"atomicNumber",
 	"stateAtRoomTemp",
 	"category",
 	"meltingPoint",

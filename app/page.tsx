@@ -141,7 +141,6 @@ export default function Home() {
       <p>Highscore: {highscore}</p>
       <NumGuessContainer maxGuesses={maxGuesses} numberOfGuesses={maxGuesses - guessNumber} />
       <Search setGuessedElement={setGuessedElement} search={search} setSearch={setSearch} firstSixMatching={firstSixMatching} setFirstSixMatching={setFirstSixMatching} />
-      {correctElement?.name}
       <Grid guessList={guessList} correctElement={correctElement} />
 
       <EndingScreenOverlay win={win} isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)}>

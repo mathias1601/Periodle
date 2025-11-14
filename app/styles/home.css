@@ -1,6 +1,10 @@
 .titleSection {
     display: flex;
     justify-content: center;
+    background-color: #fafafa;
+    width: 400px;
+    margin: 0 auto;
+    border-radius: 30px;
 }
 
 .hardModeButtonActive {
