@@ -1,19 +1,15 @@
-import { ChangeEvent, Dispatch, SetStateAction, useEffect, useState } from "react"
+import { ChangeEvent, Dispatch, SetStateAction } from "react"
 import { periodicTable } from '../global_variables/elements';
 import '../styles/search.css'
 import { PeriodElement } from "../types/periodElement";
 
-type Element = {
-	name: string
-	symbol: string
-}
 
 interface Props {
 	setGuessedElement: Dispatch<SetStateAction<string>>
 	search: string
 	setSearch: Dispatch<SetStateAction<string>>
-	firstSixMatching: Element[]
-	setFirstSixMatching: Dispatch<SetStateAction<Element[]>>
+	firstSixMatching: PeriodElement[]
+	setFirstSixMatching: Dispatch<SetStateAction<PeriodElement[]>>
 }
 
 const Search = ({ setGuessedElement, search, setSearch, firstSixMatching, setFirstSixMatching }: Props) => {
@@ -46,7 +42,7 @@ const Search = ({ setGuessedElement, search, setSearch, firstSixMatching, setFir
 				onChange={handleChange}
 			/>
 			<ul>
-				{firstSixMatching && firstSixMatching.map((item: Element, index) => (
+				{firstSixMatching && firstSixMatching.map((item: PeriodElement, index) => (
 					<li
 						key={index}
 						onClick={() => {

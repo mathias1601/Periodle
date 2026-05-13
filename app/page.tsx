@@ -6,9 +6,9 @@ import { PeriodElement } from './types/periodElement';
 import { useEffect, useState } from "react";
 import EndingScreenOverlay from './components/EndingScreenOverlay';
 import NumGuessContainer from './components/NumGuessContainer';
-import './styles/infoButton.css'
+import './styles/infoButton.css';
 import Link from 'next/link';
-import './styles/home.css'
+import './styles/home.css';
 import useScoreStore from './store/useScoreStore';
 import useHighScoreStore from './store/useHighScoreStore';
 
@@ -26,7 +26,7 @@ export default function Home() {
   const [correctElement, setCorrectElement] = useState<PeriodElement>();
   const [guessedElement, setGuessedElement] = useState<string>("");
   const [guessNumber, setGuessNumber] = useState<number>(0);
-  const [win, setWin] = useState<Boolean>(false);
+  const [win, setWin] = useState<boolean>(false);
   const [guessList, setGuessList] = useState<PeriodElement[]>([]);
 
   // UseState for the search bar
@@ -54,25 +54,6 @@ export default function Home() {
     localStorage.setItem('currentscore', JSON.stringify(score));
   }, [highscore, score]);
 
-  const fetchElementData = async (name: string) => {
-    const res = await fetch(`/api/?name=${name}`);
-    const data = await res.json();
-
-    setCorrectElement(data.data.data.name)
-    console.log(data)
-  };
-
-  // Api data fetcher
-  /* useEffect(() => {
-    const randomElementIndex = Math.floor(Math.random() * periodicTable.length + 1)
-
-    var query = {
-      name: periodicTable[randomElementIndex].name
-    };
-
-    fetchElementData(query.name)
-  }, []) */
-
 
   useEffect(() => {
     if (guessedElement === "") {
@@ -86,7 +67,11 @@ export default function Home() {
       setGuessNumber(guessNumber + 1)
     }
 
-    setGuessList(prev => [...prev, periodicTable.find(element => element.name === guessedElement)])
+    const foundElement = periodicTable.find(element => element.name === guessedElement);
+    if (foundElement) {
+      setGuessList(prev => [...prev, foundElement]);
+    }
+
   }, [guessedElement])
 
   // Local data fetcher

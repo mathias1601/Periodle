@@ -6,7 +6,7 @@ import ToggleButton from '../components/ToggleButton'
 import useHardModeStore from '../store/useHardModeStore'
 
 
-const page = () => {
+const Page = () => {
 
     // useStore zustand
     const hardmode = useHardModeStore((state) => state.hardmode)
@@ -26,4 +26,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

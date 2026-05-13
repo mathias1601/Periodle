@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import '../styles/howToPlay.css'
 
-const page = () => {
+const Page = () => {
 	return (
 		<div>
 			<div>
@@ -33,4 +33,4 @@ const page = () => {
 	)
 }
 
-export default page
+export default Page

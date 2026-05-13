@@ -7,7 +7,7 @@ import useHardModeStore from '../store/useHardModeStore';
 
 interface Props {
 	guessList: PeriodElement[]
-	correctElement: PeriodElement
+	correctElement: PeriodElement | undefined
 }
 
 const keys: (keyof PeriodElement)[] = [
@@ -30,7 +30,7 @@ const Grid = ({ guessList, correctElement }: Props) => {
 		<div key={index} className='grid grid-cols-8'>
 			{keys.map((key) => {
 				const guessValue = guess[key]
-				const correctValue = correctElement[key]
+				const correctValue = correctElement ? correctElement[key] : undefined
 
 				const isCorrect = guessValue === correctValue
 				const showArrow = !hardmode && typeof guessValue === "number" && typeof correctValue === "number"

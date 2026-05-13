@@ -2,10 +2,10 @@ import React from 'react'
 import '../styles/overlay.css'
 
 interface Props {
-	win: Boolean
+	win: boolean
 	isOpen: boolean
 	onClose: () => void
-	children: any
+	children: React.ReactNode
 }
 
 const EndingScreenOverlay = ({ win, isOpen, onClose, children }: Props) => {
