@@ -1,7 +1,6 @@
 'use client'
 import React from 'react';
 import Switch from '@mui/material/Switch';
-import useHardModeStore from '../store/useHardModeStore';
 
 interface Props {
 	checkedState: boolean

@@ -64,7 +64,7 @@ export default function Home() {
       setWin(true)
     }
     else {
-      setGuessNumber(guessNumber + 1)
+      setGuessNumber(g => g + 1)
     }
 
     const foundElement = periodicTable.find(element => element.name === guessedElement);
