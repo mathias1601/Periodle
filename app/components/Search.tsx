@@ -37,7 +37,7 @@ const Search = ({ setGuessedElement, search, setSearch, firstSixMatching, setFir
 		<div className="search-container">
 			<input
 				type="text"
-				placeholder="Search..."
+				placeholder="Guess an element..."
 				value={search}
 				onChange={handleChange}
 			/>

@@ -113,23 +113,37 @@ export default function Home() {
 
   return (
     <div className='mainHome'>
-      <div className='titleSection'>
-        <h1>Periodle</h1>
-        <Link href='/howToPlay'>
-          <button className='infoButton'></button>
+      <header className='gameHeader'>
+        <div className='titleSection'>
+          <h1>Periodle</h1>
+          <Link href='/howToPlay' aria-label='How to play'>
+            <button className='infoButton' aria-label='How to play'></button>
+          </Link>
+        </div>
+        <Link href='/settings'>
+          <button className='settingsButton'>Settings</button>
         </Link>
-      </div>
-      <Link href='/settings'>
-        <button>Settings</button>
-      </Link>
-      <p>Current Score: {score}</p>
-      <p>Highscore: {highscore}</p>
-      <NumGuessContainer maxGuesses={maxGuesses} numberOfGuesses={maxGuesses - guessNumber} />
-      <Search setGuessedElement={setGuessedElement} search={search} setSearch={setSearch} firstSixMatching={firstSixMatching} setFirstSixMatching={setFirstSixMatching} />
-      <Grid guessList={guessList} correctElement={correctElement} />
+      </header>
+
+      <section className='scorePanel' aria-label='Score'>
+        <div>
+          <span>Current score</span>
+          <strong>{score}</strong>
+        </div>
+        <div>
+          <span>Highscore</span>
+          <strong>{highscore}</strong>
+        </div>
+      </section>
+
+      <main className='gameBoard'>
+        <NumGuessContainer maxGuesses={maxGuesses} numberOfGuesses={maxGuesses - guessNumber} />
+        <Search setGuessedElement={setGuessedElement} search={search} setSearch={setSearch} firstSixMatching={firstSixMatching} setFirstSixMatching={setFirstSixMatching} />
+        <Grid guessList={guessList} correctElement={correctElement} />
+      </main>
 
       <EndingScreenOverlay win={win} isOpen={isOverlayOpen} onClose={() => setIsOverlayOpen(false)}>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => tryAgain()}>Continue</button>
+        <button className="continueButton" onClick={() => tryAgain()}>Continue</button>
       </EndingScreenOverlay>
     </div>
   );

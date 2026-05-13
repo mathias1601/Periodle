@@ -1,17 +1,70 @@
+.settingsPage {
+    margin: 0 auto;
+    padding: 34px 0 56px;
+    width: min(760px, calc(100% - 28px));
+}
+
+.subpageHeader {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.subpageHeader a {
+    left: 0;
+    position: absolute;
+}
+
 .backButton {
-    border: solid 3px black;
-    border-radius: 30px;
-    padding: 5px;
-    font-size: 20px;
+    background: var(--panel-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--foreground);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 10px 14px;
 }
 
 .backButton::before {
-    content: "←";
+    content: "\2190";
     margin-right: 8px;
 }
 
 .backButton:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
+    border-color: var(--accent);
+}
+
+.settingsPanel {
+    align-items: center;
+    background: rgba(16, 24, 32, 0.74);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 22px;
+    text-align: left;
+}
+
+.settingsPanel h2 {
+    margin: 0 0 6px;
+}
+
+.settingsPanel p {
+    color: var(--muted);
+    margin: 0;
+}
+
+@media (max-width: 620px) {
+    .subpageHeader {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .subpageHeader a {
+        position: static;
+    }
 }

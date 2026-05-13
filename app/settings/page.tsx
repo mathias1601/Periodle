@@ -13,15 +13,20 @@ const Page = () => {
     const setHardmode = useHardModeStore((state) => state.setHardmode)
 
     return (
-        <div>
-            <div>
+        <div className='settingsPage'>
+            <div className='subpageHeader'>
                 <Link href='/'>
                     <button className='backButton'>Back</button>
                 </Link>
                 <h1>Settings</h1>
             </div>
-            <p>Hard-mode</p>
-            <ToggleButton handleChange={() => setHardmode(!hardmode)} checkedState={hardmode} />
+            <div className='settingsPanel'>
+                <div>
+                    <h2>Hard mode</h2>
+                    <p>Hide higher/lower arrows after each guess.</p>
+                </div>
+                <ToggleButton handleChange={() => setHardmode(!hardmode)} checkedState={hardmode} />
+            </div>
         </div>
     )
 }

@@ -1,17 +1,59 @@
-.correctGuess {
-    border: solid 1px black;
-    background-color: lightgreen;
-    font-size: 30px;
+.gridShell {
+    margin-top: 22px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.guessGrid {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: minmax(128px, 1.35fr) repeat(7, minmax(92px, 1fr));
+    margin-bottom: 6px;
+    min-width: 820px;
+}
+
+.guessGridHeader {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.correctGuess,
+.wrongGuess {
+    align-items: center;
+    border: solid 1px rgba(255, 255, 255, 0.14);
+    border-radius: 6px;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.14);
+    color: white;
     display: flex;
+    font-size: clamp(0.82rem, 1.7vw, 1rem);
+    font-weight: 800;
+    gap: 6px;
+    justify-content: center;
+    min-height: 58px;
+    overflow-wrap: anywhere;
+    padding: 8px;
+}
+
+.correctGuess {
+    background: linear-gradient(180deg, #5fbf7a, var(--correct));
 }
 
 .wrongGuess {
-    border: solid 1px black;
-    background-color: lightcoral;
-    font-size: 30px;
-    display: flex;
+    background: linear-gradient(180deg, #dc7373, var(--wrong));
 }
 
 .column {
-    font-size: 30px;
+    align-items: center;
+    background: #26364a;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    color: var(--muted);
+    display: flex;
+    font-size: 0.78rem;
+    font-weight: 900;
+    justify-content: center;
+    min-height: 42px;
+    padding: 8px;
+    text-transform: uppercase;
 }

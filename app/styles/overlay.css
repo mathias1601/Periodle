@@ -1,43 +1,47 @@
 .overlay_background {
-    background-color: rgba(0, 0, 0, 0.5);
-    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.68);
+    cursor: pointer;
     height: 100vh;
+    left: 0;
     position: fixed;
     top: 0;
-    left: 0;
-    cursor: pointer;
+    width: 100vw;
     z-index: 9;
 }
 
 .overlay_container {
-    background-color: white;
-    position: fixed;
-    top: 0;
-    right: 0;
+    background-color: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
     bottom: 0;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
+    color: var(--foreground);
+    height: fit-content;
     left: 0;
     margin: auto;
-    z-index: 10;
     padding: 30px;
+    position: fixed;
+    right: 0;
+    top: 0;
     width: fit-content;
-    height: fit-content;
-    border-radius: 10px;
+    z-index: 10;
 }
 
 .overlay_controls {
+    align-items: center;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
 }
 
 .overlay_close {
-    border: none;
     background-color: transparent;
-    font-size: 36px;
+    border: none;
+    color: var(--muted);
     cursor: pointer;
+    font-size: 36px;
 }
 
 .overlay_close:after {
-    display: inline-block;
     content: "\00D7";
+    display: inline-block;
 }

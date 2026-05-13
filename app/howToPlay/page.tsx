@@ -4,8 +4,8 @@ import '../styles/howToPlay.css'
 
 const Page = () => {
 	return (
-		<div>
-			<div>
+		<div className='howToPlayPage'>
+			<div className='subpageHeader'>
 				<Link href='/'>
 					<button className='backButton'>Back</button>
 				</Link>

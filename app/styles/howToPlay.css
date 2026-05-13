@@ -1,37 +1,95 @@
-.section {
-    max-width: 900px;
+.howToPlayPage {
     margin: 0 auto;
-    padding: 50px;
-    font-size: 23px;
-    text-align: left;
+    padding: 34px 0 56px;
+    width: min(980px, calc(100% - 28px));
+}
+
+.subpageHeader {
+    align-items: center;
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+}
+
+.subpageHeader a {
+    left: 0;
+    position: absolute;
 }
 
 .howToPlayContainer {
-    background-color: white;
-    max-width: 1200px;
+    background: rgba(16, 24, 32, 0.74);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
     margin: 0 auto;
-    border-radius: 50px;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 900px;
+}
+
+.section {
+    border-bottom: 1px solid var(--line);
+    color: #dce7f5;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin: 0 auto;
+    max-width: 760px;
+    padding: 28px;
+    text-align: left;
+}
+
+.section:last-child {
+    border-bottom: 0;
+    color: var(--accent);
+    font-weight: 900;
+    text-align: center;
 }
 
 .guessNumberExample {
+    align-items: center;
     display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.guessNumberExample img {
+    background: #f7fafc;
+    border-radius: 8px;
+    max-width: min(100%, 360px);
+    padding: 10px;
 }
 
 .backButton {
-    border: solid 3px black;
-    border-radius: 30px;
-    padding: 5px;
-    font-size: 20px;
+    background: var(--panel-soft);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    color: var(--foreground);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 10px 14px;
 }
 
 .backButton::before {
-    content: "←";
+    content: "\2190";
     margin-right: 8px;
 }
 
 .backButton:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
+    border-color: var(--accent);
+}
+
+@media (max-width: 620px) {
+    .subpageHeader {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .subpageHeader a {
+        position: static;
+    }
+
+    .section {
+        padding: 22px;
+    }
 }

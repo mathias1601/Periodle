@@ -1,17 +1,17 @@
 .infoButton {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: #007BFF;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
+    align-items: center;
+    background-color: var(--accent);
     border: none;
+    border-radius: 50%;
+    color: #101820;
     cursor: pointer;
     display: inline-flex;
-    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    height: 34px;
     justify-content: center;
     position: relative;
+    width: 34px;
 }
 
 .infoButton::before {
@@ -19,5 +19,5 @@
 }
 
 .infoButton:hover {
-    background-color: #0056b3;
+    background-color: #ffe082;
 }

@@ -27,7 +27,7 @@ const Grid = ({ guessList, correctElement }: Props) => {
 	const hardmode = useHardModeStore((state) => state.hardmode)
 
 	const displayGuesses = guessList.map((guess, index) => (
-		<div key={index} className='grid grid-cols-8'>
+		<div key={index} className='guessGrid'>
 			{keys.map((key) => {
 				const guessValue = guess[key]
 				const correctValue = correctElement ? correctElement[key] : undefined
@@ -52,13 +52,13 @@ const Grid = ({ guessList, correctElement }: Props) => {
 	))
 
 	return (
-		<div>
-			<div className='grid grid-cols-8'>
+		<div className='gridShell'>
+			<div className='guessGrid guessGridHeader'>
 				<div className='column'>
-					Element Name
+					Element
 				</div>
 				<div className='column'>
-					Atomic Number
+					Atomic no.
 				</div>
 				<div className='column'>
 					Period
@@ -67,16 +67,16 @@ const Grid = ({ guessList, correctElement }: Props) => {
 					Group
 				</div>
 				<div className='column'>
-					State at room temp
+					State
 				</div>
 				<div className='column'>
 					Category
 				</div>
 				<div className='column'>
-					Melting point
+					Melting pt.
 				</div>
 				<div className='column'>
-					Year discovered
+					Year
 				</div>
 			</div>
 			{displayGuesses}
